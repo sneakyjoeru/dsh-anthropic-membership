@@ -52,6 +52,11 @@ Loopback only, `127.0.0.1:8185` (override with `DSH_MEMBERSHIP_PORT`; the Settin
 CORS does not reflect arbitrary `Origin`. A missing CSRF header is 403. `/login` is 409 if a login is already in flight.
 
 
+
+## Extra usage toggle
+
+The membership card has an **Extra usage enabled / disabled** checkbox (stored in `$DSH_HOME/anthropic-membership.yaml`, `POST /extra-usage {"blocked": true|false}`). *Enabled* (default) leaves Anthropic's own account setting in charge. *Disabled* wraps `llm.stream`: once the usage card shows a plan window at 100 % (5-hour, weekly, or a model-scoped weekly limit) Claude membership requests fail with a clear message instead of being billed as extra usage; other providers and API-key mode are untouched, and unknown usage fails open. `/status` reports `extraUsage: {blocked, exhausted}`.
+
 ## Remote browsers and headless hosts
 
 The control API is loopback-only and the Claude OAuth callback goes to `http://localhost:53692/callback` on the machine running DSH. When the browser is on another machine (DSH behind a reverse proxy) or the host has no browser:
