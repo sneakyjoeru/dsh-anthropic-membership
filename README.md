@@ -51,6 +51,15 @@ Loopback only, `127.0.0.1:8185` (override with `DSH_MEMBERSHIP_PORT`; the Settin
 
 CORS does not reflect arbitrary `Origin`. A missing CSRF header is 403. `/login` is 409 if a login is already in flight.
 
+
+## Remote browsers and headless hosts
+
+The control API is loopback-only and the Claude OAuth callback goes to `http://localhost:53692/callback` on the machine running DSH. When the browser is on another machine (DSH behind a reverse proxy) or the host has no browser:
+
+- **Sign in** returns the Claude authorize link right away and the card shows a paste box. Open the link, approve, then paste the final redirect URL (`localhost:53692/callback?code=…&state=…`, the page itself may fail to load) or the code into the box and click **Finish sign-in** (`POST /login/code {"input": "..."}`). On loopback the callback still completes the login by itself.
+- Served from a non-loopback origin the page calls the same-origin path **`/__membership/*`**; make the reverse proxy in front of DSH forward that prefix to `127.0.0.1:8185` (strip the prefix) and send an allowed `Origin`, or list the public origin in `DSH_MEMBERSHIP_ORIGINS` (comma separated).
+- In a container publish the port with `DSH_MEMBERSHIP_BIND=0.0.0.0`; requests stay gated by `Origin` and the `x-dsh-membership` header.
+
 ## Tests
 
 ```sh
