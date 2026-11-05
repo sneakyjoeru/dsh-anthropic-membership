@@ -1,7 +1,7 @@
 {
   "name": "dsh-anthropic-membership",
   "version": "1.0.0",
-  "description": "DeepSeek Harness plugin: Sign in with Claude Pro/Max (no Anthropic API key). Also caps Anthropic request images at 2000px and slims /compact so a 1M context can still summarize.",
+  "description": "DeepSeek Harness plugin: Sign in with Claude Pro/Max (no Anthropic API key). Also caps Anthropic request images at 2000px and slims /compact so a 1M context can still summarize. Wake-up calls start the 5-hour plan window at chosen times.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -39,12 +39,13 @@
     "lib/oauth.mjs",
     "lib/plan-usage.mjs",
     "lib/request-image.mjs",
+    "lib/wake-up.mjs",
     "login.mjs",
     "logout.mjs",
     "usage.mjs"
   ],
   "scripts": {
-    "test": "node lib/unbound-imports.test.mjs && node lib/compact-payload.test.mjs && node lib/login-prompt.test.mjs && node lib/request-image.test.mjs && node lib/plan-usage.test.mjs && node lib/dsh-messages.test.mjs && node lib/dsh-messages-v4.test.mjs && node lib/full-access.test.mjs && node lib/extra-usage.test.mjs && node lib/listen-busy.test.mjs && node lib/client-render.test.mjs"
+    "test": "node lib/unbound-imports.test.mjs && node lib/compact-payload.test.mjs && node lib/login-prompt.test.mjs && node lib/request-image.test.mjs && node lib/plan-usage.test.mjs && node lib/dsh-messages.test.mjs && node lib/dsh-messages-v4.test.mjs && node lib/full-access.test.mjs && node lib/extra-usage.test.mjs && node lib/listen-busy.test.mjs && node lib/client-render.test.mjs && node lib/wake-up.test.mjs"
   },
   "repository": {
     "type": "git",
