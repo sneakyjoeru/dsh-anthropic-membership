@@ -24,7 +24,7 @@ dsh plugin --profile web add file:./dsh-anthropic-membership
 
 Restart `dsh web`. Open **Settings → Models**. On the Anthropic card: **Sign in with Claude Pro/Max**. Then pick an `anthropic` / `claude-*` model.
 
-A compact chip on the main composer dock shows `Claude · 5h N% · wk N% · N msgs`. The Anthropic card shows **plan-window %** (5-hour and weekly) and **DSH message counts** for that window. It does not show remaining messages, tokens, or dollars. Usage % is account-wide (every Claude app); message counts are DSH only.
+A compact chip on the main composer dock shows `Claude · 5h N% · wk N% · N msgs`. The Anthropic card shows **plan-window %** (5-hour and weekly) and **DSH message counts** for that window. It does not show remaining messages, tokens, or dollars. Usage % is account-wide (every Claude app); message counts are DSH only. When a window is used up the chip replaces its percentage with the time left until the reset — `4:07:12` for the 5-hour window, `1d+5:32:59` for the weekly one — ticking once a second, and the card reads **limit reached**.
 
 If the UI is down:
 
